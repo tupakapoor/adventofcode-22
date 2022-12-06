@@ -14,14 +14,22 @@ fs.readFile('input.txt', (err, data) => {
       }
     });
 
-    let maxCalories = 0;
+    let caloriesArray = []
     elves.forEach((elf) => {
       let calories = elf.reduce((accumVariable, curValue) => {
         return accumVariable + curValue
       }, 0);
-      maxCalories = Math.max(calories, maxCalories);
+      caloriesArray.push(calories);
     });
-    console.log('Max calories: ' + maxCalories);
 
+    caloriesArray.sort((a,b) => { return b - a; });
+    console.log('Max calories: ' + caloriesArray[0]);
+
+    let top3 = 0;
+    for (var i = 0; i < 3; i++) {
+      top3 += caloriesArray[i];
+    }
+
+    console.log('Top 3 sum: ' + top3);
     
 })
